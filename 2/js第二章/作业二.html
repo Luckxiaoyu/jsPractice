@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	*{
+		padding: 0;
+		margin: 0;
+	}
+	*{
+		list-style: none;
+	}
+		.box{
+			padding: 5px;
+		}
+		.ll{
+			display: inline-block;
+		}
+		.ll div{
+			display: inline-block;
+		}
+		.ll button{
+			display: block;
+			width: 50px;
+			height: 50px;
+			font: 30px/46px "微软雅黑";
+		}
+		.cen{
+			height: 200px;
+		}
+		.ll strong{
+			height: 50px;
+			display: block;
+			width: 50px;
+			text-align: center;
+			font: 30px/50px "微软雅黑";
+
+		}
+		.rr{
+			display: inline-block;
+		}
+		.rr p{
+
+			display: inline-block;
+			text-align: center;
+			font-size: 20px;
+		}
+		.rr span,.rr em{
+			height: 50px;
+			font: italic 30px/50px "微软雅黑";
+			margin:0 50px 0 0px;
+		}
+	</style>
+	<script>
+		window.onload=function(){
+			var sub=document.querySelectorAll('.left button');
+			var add=document.querySelectorAll('.right button');
+			var num=document.querySelectorAll('.ll strong');
+			var result=document.querySelectorAll('.rr span');
+			var single=document.querySelectorAll('.rr em');
+			var arr=['1.5','10','20','30'];	
+			var com=document.querySelector('.bot span');	
+			var max=document.querySelector('.bot em');
+			var to=document.querySelector('.bot strong');
+			var maxInt=0;
+			var maxarr=['0'];
+			for(var i=0;i<single.length;i++){
+				single[i].innerHTML=arr[i];
+			}
+			for(j=0;j<add.length;j++){
+				add[j].index=j;
+				sub[j].index=j;
+					add[j].onclick=function(){
+						num[this.index].innerHTML++;
+						result[this.index].innerHTML=num[this.index].innerHTML*parseFloat(single[this.index].innerHTML)+'元';	
+						This=this;
+						fn();
+						addadd();
+						//找到了点击的数组，也找到里点击的字母，现在要把点击是字母截取掉
+						maxarr.push(single[This.index].innerHTML);
+						console.log(maxarr);
+						maxIn();
+						
+					}
+				
+				
+				sub[j].onclick=function(){
+					This=this;
+					num[this.index].innerHTML--;
+					
+					if(num[this.index].innerHTML<0){
+						num[this.index].innerHTML=0;
+
+					}
+					result[this.index].innerHTML=num[this.index].innerHTML*parseFloat(single[this.index].innerHTML)+'元';
+					addadd();
+					fn();
+					
+						if(num[this.index].innerHTML>=0){
+							var int =maxarr.indexOf(single[This.index].innerHTML);
+							maxarr.splice(int,1);
+
+						}
+				maxIn();
+					
+					console.log(maxarr);
+			}	
+
+			}
+			function fn(){
+					var numbe=0;
+					for(var i=0;i<num.length;i++){
+						numbe+=Number(num[i].innerHTML);
+					}
+					com.innerHTML = numbe;
+				}
+			function addadd(){
+				var int=0;
+				for(var i=0;i<result.length;i++){
+					int+=parseFloat(result[i].innerHTML);
+				}
+				to.innerHTML=int;
+			}
+			function maxIn(){
+				var maxq=0;
+						for(var i=0;i<maxarr.length;i++){
+							if(maxarr[i]>maxq){
+								maxq=maxarr[i];
+							}
+							console.log(maxq);
+							max.innerHTML=maxq;
+						}
+			}
+
+			
+
+			
+			
+			
+		}
+	</script>
+</head>
+<body>
+<div class="box">
+	<div class="ll">
+		<div class="left">
+		<button>-</button>
+		<button>-</button>
+		<button>-</button>
+		<button>-</button>
+		</div>
+
+		<div class="cen">
+			<strong>0</strong>
+			<strong>0</strong>
+			<strong>0</strong>
+			<strong>0</strong>
+		</div>
+		<div class="right">
+			<button>+</button>
+			<button>+</button>
+			<button>+</button>
+			<button>+</button>
+		</div>
+		</div>
+	<div class="rr">
+		<ul>
+			<li><p>单价:<em></em>元</p>
+			<p>小计<span>0元</span></p></li>
+			<li><p>单价:<em></em>元 </p>
+			<p>小计<span>0元</span></p></li>
+			<li><p>单价:<em></em>元 </p>
+			<p>小计<span>0元</span></p></li>
+			<li><p>单价:<em></em>元 </p>
+			<p>小计<span>0元</span></p></li>
+		</ul>
+		</div>
+		<div class="bot">
+			<p>共购买了<span>0</span>件商品,
+			单价最贵的是: <em>0</em>元，
+			合计<strong>0</strong>元
+			
+			</p>
+		</div>
+	</div>
+
+		
+	
+</body>
+</html>

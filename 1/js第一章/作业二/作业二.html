@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.center {
+				width: 400px;
+				height: 400px;
+				position: relative;
+			}
+			
+			a {
+				display: inline-block;
+				width: 50px;
+				height: 50px;
+				background: rgba(255, 255, 255, 0.8);
+				font: 30px/50px "微软雅黑";
+				text-decoration: none;
+				color: #ccc;
+				text-align: center;
+			}
+			a:hover{
+				background: rgba(255, 255, 255, 0.3);
+			}
+			
+			a:nth-of-type(1) {
+				position: absolute;
+				left: 0;
+				top: 175px;
+			}
+			
+			a:nth-of-type(2) {
+				position: absolute;
+				right: 0;
+				top: 175px;
+			}
+			#p3,#p4{
+				position: absolute;
+				color: #fff;
+				width: 400px;
+				text-align: center;
+				
+				margin:0;
+				font: 20px/40px "微软雅黑";
+				background: rgba(0,0,0,.5);
+			}
+			#p3{
+				
+			}
+			#p4{
+				
+				bottom: 0px;
+
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<input type="button" id="cir" value="循环切换" />
+		<input type="button" id="der" value="顺序切换" />
+		<p id="p1">图片可以从最后一张转到第一张循环切换</p>
+		<p id="p2" style="display: none;">图片只能到第一张或最后一张切换</p>
+		<div class="center">
+			<p id="p3">4/1</p>
+			<img src="img/img01.jpg" id="pic" />
+			<a href="#" id="last"><</a>
+			<a href="#" id="next">></a>
+			<p id="p4">文字1</p>
+		</div>
+		
+		<script type="text/javascript">
+			//获取所有元素
+			var cir = document.getElementById('cir');
+			var der = document.getElementById('der');
+			var last = document.getElementById('last');
+			var next = document.getElementById('next');
+			var img = ['img01', 'img02', 'img03', 'img04'];
+			var arr=['风景一','风景二','风景三','风景四',]
+			var i = 0;
+			p3.innerHTML=(i+1)+'/'+img.length;
+			p4.innerHTML=arr[i];
+
+			//调用循环切换函数，默认
+			next.onclick=function() {
+				fn1();
+			}
+			last.onclick=function() {
+				fn2();
+			}
+			//点击顺序切换后，开始顺序切换
+			der.onclick = function() {
+				p2.style.display='block';
+				p1.style.display='none';
+				
+				next.onclick = function() {
+					i++;
+					
+					if(i > img.length - 1) {
+						i = 3;
+						alert('已经是最后一张')
+					}
+					pic.src = 'img/' + img[i] + '.jpg';
+					p3.innerHTML=(i+1)+'/'+img.length;
+					p4.innerHTML=arr[i];
+				}
+				last.onclick = function() {
+					i--;
+					if(i < 0) {
+						i = 0;
+						alert('已经是第一张')
+					}
+					pic.src = 'img/' + img[i] + '.jpg';
+					p3.innerHTML=(i+1)+'/'+img.length;
+					p4.innerHTML=arr[i];
+				}
+			}
+			//顺序切换结束
+			
+			//引用循环切换，非默认
+			cir.onclick = function() {
+				p2.style.display='none';
+				p1.style.display='block';
+				next.onclick=function() {
+				fn1();
+			}
+			last.onclick=function() {
+				fn2();
+			}
+			}
+			//循环切换函数开始
+			function fn1() {
+				i++;
+				if(i > img.length - 1) {
+					i = 0;
+				}
+				pic.src = 'img/' + img[i] + '.jpg';
+				p3.innerHTML=(i+1)+'/'+img.length;
+				p4.innerHTML=arr[i];
+
+			}
+			function fn2() {
+				i--;
+				if(i < 0) {
+					i = 3;
+				}
+				pic.src = 'img/' + img[i] + '.jpg';
+				p3.innerHTML=(i+1)+'/'+img.length;
+				p4.innerHTML=arr[i];
+
+			}
+			//循环切换结束
+			
+			
+		</script>
+	</body>
+
+</html>

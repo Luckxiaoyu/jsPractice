@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		span{
+			margin-left: 5px;
+		}
+	</style>
+</head>
+<body>
+	<p>
+	var arr = [ '100px', 'abc'-6, [], -98765, 34, -2, 0, '300', , function(){alert(1);}, null, document, [], true, '200px'-30,'23.45元', 5, Number('abc'), function(){ alert(3); }, 'xyz'-90 ];
+	</p>
+	<p>
+		1、找到arr里所有的数字(数组里的某个数据本身就是数字)：
+	</p>
+	<p>
+		2、找到可以转成数字的(除了对象类型与布尔值类型)：
+	</p>
+	<p>
+		3、把所有数据转成数字以后，找出最大值：
+	</p>
+	<p>
+		4、把NaN(每个数据运算后的值为NaN)所在的位置找出来：
+	</p>
+	<script>
+		var arr = [ '100px', 'abc'-6, [], -98765, 34, -2, 0, '300', , function(){alert(1);}, null, document, [], true, '200px'-30,'23.45元', 5, Number('abc'), function(){ alert(3); }, 'xyz'-90 ];
+		var ps=document.querySelectorAll('p');
+		var max=0;
+		var maxInt=[];
+		//第一开始
+		for(var i=0;i<arr.length;i++){
+				if(Number(arr[i])&&typeof(arr[i])!='boolean'){	
+					ps[1].innerHTML+=arr[i]+', ';
+				}
+				//第一结束
+				//第二开始
+				if (parseFloat(arr[i])) {
+					ps[2].innerHTML+=arr[i]+', ';
+				}	
+				//第二结束
+				//第三开始
+				var num=''
+				if(isNaN(parseFloat(arr[i]))==false){
+					num=parseFloat(arr[i]);
+					maxInt.push(num);
+					
+					
+				}
+				//续第三
+				//第四开始
+			
+			if(arr[i]!=arr[i]){
+				ps[4].innerHTML+=i+', ';
+			}
+			//第四结束
+			
+
+				
+		}	
+		// 接第三部分
+		for(var i=0;i<maxInt.length;i++){
+			if(maxInt[i]>max){
+				max=maxInt[i]
+			};
+			console.log(max);
+
+		}
+		ps[3].innerHTML+=max;
+		
+		
+	</script>
+		
+</body>
+</html>

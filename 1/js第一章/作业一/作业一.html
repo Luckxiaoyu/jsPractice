@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.ldiv,.rdiv{
+			display: inline-block;
+			}
+			p{
+				text-align: center;
+				margin: 0;
+			}
+			span{
+				position: relative;
+				left: 10px;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div id="btn">
+			<input type="button" name="" id="last" value="上一组" />
+			<input type="button" name="" id="next" value="下一组" />
+		</div>
+		
+		<div class="ldiv">
+			<img src="img/img11.jpg" id="left"/>
+			<p id="p1"></p>
+			<span id="span1"></span>
+		</div>
+		<div class="rdiv">
+			<img src="img/img01.jpg" id="right"/>
+			<p id="p2"></p>
+			<span id="span2"></span>
+		</div>
+		
+		
+		
+		
+			
+		
+		<script type="text/javascript">
+			//获取所有元素
+			var last=document.getElementById('last');
+			var next=document.getElementById('next');
+			var left=document.getElementById('left');
+			var right=document.getElementById('right');
+			var p1=document.getElementById('p1');
+			var p2=document.getElementById('p2');
+			var span1=document.getElementById('span1');
+			var span2=document.getElementById('span2');
+			var i=0;
+			var j=0;
+			var img1=['img11','img12','img13','img14'];
+			var img2=['img01','img02','img03'];
+			//左边照片点击下一张
+			pone=p1.innerHTML='第一组第'+(i+1)+'张';
+			sone=span1.innerHTML=(i+1)+'/'+img1.length;
+			ptwo=p2.innerHTML='第一组第'+(j+1)+'张';
+			stwo=span2.innerHTML=(j+1)+'/'+img2.length;
+			left.onclick=function(){
+				i++;
+				if(i>img1.length-1){
+					i=0;
+				}
+				left.src='img/'+img1[i]+'.jpg';
+				p1.innerHTML='第一组第'+(i+1)+'张';
+				span1.innerHTML=(i+1)+'/'+img1.length;
+			}
+			//右边照片点击下一张
+			right.onclick=function(){
+				j++;
+				if(j>img2.length-1){
+					j=0;
+				}
+				right.src='img/'+img2[j]+'.jpg';
+				p2.innerHTML='第一组第'+(j+1)+'张';
+				span2.innerHTML=(j+1)+'/'+img2.length;
+			}
+			//点击下一组，一起变下一张
+			next.onclick=function(){
+				
+				i++;
+				if(i>img1.length-1){//i=4
+					
+					i=0;
+					
+				}
+				left.src='img/'+img1[i]+'.jpg';
+				p1.innerHTML='第一组第'+(i+1)+'张';
+				span1.innerHTML=(i+1)+'/'+img1.length;
+				j++;
+				if(j>img2.length-1){
+					j=0;
+				}
+				right.src='img/'+img2[j]+'.jpg';
+				p2.innerHTML='第一组第'+(j+1)+'张';
+				span2.innerHTML=(j+1)+'/'+img2.length;
+			}
+			//点击上一组，一起变上一张
+			last.onclick=function(){
+				
+				i--;
+				if(i<0){
+					
+					i=3;
+				}
+				left.src='img/'+img1[i]+'.jpg';
+				p1.innerHTML='第一组第'+(i+1)+'张';
+				span1.innerHTML=(i+1)+'/'+img1.length;
+				j--;
+				if(j<0){
+					
+					j=2;
+				}
+				right.src='img/'+img2[j]+'.jpg';
+				p2.innerHTML='第一组第'+(j+1)+'张';
+				span2.innerHTML=(j+1)+'/'+img2.length;
+			}
+		</script>
+	</body>
+</html>
